@@ -26,6 +26,7 @@ public class User {
 
     private boolean enabled;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Contact> contacts = new ArrayList<>();
 
     public int getId() {

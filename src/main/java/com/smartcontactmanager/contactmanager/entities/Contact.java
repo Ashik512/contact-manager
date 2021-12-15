@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "contacts")
 public class Contact {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -25,8 +24,12 @@ public class Contact {
 
     private String image;
 
+
     @Column(name = "description", length = 1000)
     private String description;
+
+    @ManyToOne
+    private User user;
 
     public int getId() {
         return id;
@@ -90,5 +93,13 @@ public class Contact {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
