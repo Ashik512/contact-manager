@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "contacts")
 public class Contact {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
@@ -22,7 +22,7 @@ public class Contact {
 
     private String phone;
 
-    private String image;
+    private String photo;
 
 
     @Column(name = "description", length = 1000)
@@ -79,12 +79,12 @@ public class Contact {
         this.phone = phone;
     }
 
-    public String getImage() {
-        return image;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getDescription() {
@@ -102,4 +102,19 @@ public class Contact {
     public void setUser(User user) {
         this.user = user;
     }
+
+/*    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", work='" + work + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", image='" + photo + '\'' +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                '}';
+    }*/
 }

@@ -14,7 +14,7 @@
 </head>
 <body>
 <!-- navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" th:href="@{/}"><span class="text-primary">Contact</span> <span class="text-danger">M</span>anager</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -28,29 +28,18 @@
                     <a class="nav-link" th:href="@{/}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"><span th:text="${user.name}"></span></a>
+                    <a class="nav-link" th:href="@{/about}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    <a class="nav-link" th:href="@{/user/index}">Login</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 <!--end of navbar-->
-<div class="sidebar mt-2">
-    <span onclick="toggleBtn()" class="crossBtn">&times;</span>
-    <a href="#" class="item"><i class="fa fa-home mr-2"></i> Home</a>
-    <a th:href="@{/user/show-contacts}" class="item"> <i class="fa fa-id-card-alt mr-2"></i>View Contacts</a>
-    <a th:href="@{/user/add-contact}" class="item"> <i class="fas fa-pencil-alt mr-2"></i>Add Contacts</a>
-    <a href="#" class="item"><i class="fas fa-user-circle mr-2"></i>My Profile</a>
-    <a th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
-</div>
 
-<div class="content mt-5">
-    <span><i onclick="toggleBtn()" class="fa fa-bars m-3"></i></span>
-    <div th:replace="${content}"></div>
-</div>
+<div th:replace="${content}"></div>
 
 
 <!-- Optional JavaScript -->
@@ -59,6 +48,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script th:src="@{/js/index.js}"></script>
-</script>
 </body>
 </html>

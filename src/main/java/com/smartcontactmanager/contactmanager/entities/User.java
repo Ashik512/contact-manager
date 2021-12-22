@@ -1,6 +1,9 @@
 package com.smartcontactmanager.contactmanager.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,20 +11,29 @@ import java.util.List;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "Name field is required !!!")
+    @Size(min = 3, max = 20, message = "name must be between 3-20 characters")
     private String name;
+
     @Column(unique = true)
+    @NotBlank(message = "email field is required!")
+    @Email(regexp = "^(.+)@(\\S+)$", message = "Invalid email format!")
     private String email;
 
+    @NotBlank(message = "Password field is required !!!")
+    @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
+
     private String role;
 
     @Column(name = "image_url")
     private String imageUrl;
 
     @Column(name = "about", length = 1000)
+    @NotBlank(message = "About field is required !!!")
     private String about;
 
     private boolean enabled;
@@ -99,5 +111,20 @@ public class User {
 
     public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", about='" + about + '\'' +
+                ", enabled=" + enabled +
+                ", contacts=" + contacts +
+                '}';
     }
 }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+</head>
+<body>
+
+<section>
+    <div class="card mr-3 ml-5" style="width: 80%">
+        <div class="card-body">
+            <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-dismissible fade show m-2 " type="alert">
+                <p class="text-center" th:text="${session.message.content}"></p>
+                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h3 class="text-center">Add Contact</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form th:action="@{/user/process-contact}" method="post" th:object="${contact}" enctype="multipart/form-data">
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-plus"></i></span>
+                                </div>
+                                <input required type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+                            </div>
+
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="nickName" id="nickName" placeholder="Enter nick name">
+                            </div>
+
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                </div>
+                                <input required min="5" max="10" type="text" class="form-control" name="phone" id="phone" placeholder="Enter phone">
+                            </div>
+
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input required type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+                            </div>
+
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-pencil-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="work" id="work" placeholder="Enter work">
+                            </div>
+
+                            <div class="form-group mt-2">
+                                <textarea required class="form-control" name="description" id="mytextarea" rows="5" placeholder="Enter description here"></textarea>
+                            </div>
+                             
+                            <div class="custom-file mt-2">
+                                <input type="file" name="contactPhoto" id="image" class="form-control">
+                            </div>
+
+                            <div class="container text-center mt-3">
+                                <button type="submit" class="btn btn-outline-primary">Submit</button>
+                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>
