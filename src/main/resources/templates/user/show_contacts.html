@@ -28,11 +28,23 @@
                     <td><img class="my-image" th:src="@{'/img/'+ ${contact.photo}}" alt=""></td>
                     <td>
                         <button class="btn btn-sm btn-primary">Update</button>
-                        <button class="btn btn-sm btn-danger">Update</button>
+                        <button class="btn btn-sm btn-danger">Delete</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/user/show-contacts/'+ ${currentPage -1}}">Previous</a></li>
+                    <th:block th:each="i : ${#numbers.sequence(1,totalPage)}" >
+                        <li th:classappend="${currentPage == i -1 ? 'active' : ''}" class="page-item">
+                            <a class="page-link" th:href="@{'/user/show-contacts/'+ ${i -1}}"><span th:text="${i}"></span></a>
+                        </li>
+                    </th:block>
+
+                    <li th:if="${currentPage+1 != totalPage}" class="page-item"><a class="page-link" th:href="@{'/user/show-contacts/'+ ${currentPage +1}}">Next</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 </section>

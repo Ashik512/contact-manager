@@ -18,9 +18,9 @@ public class User {
     @Size(min = 3, max = 20, message = "name must be between 3-20 characters")
     private String name;
 
-    @Column(unique = true)
     @NotBlank(message = "email field is required!")
     @Email(regexp = "^(.+)@(\\S+)$", message = "Invalid email format!")
+    @Column(unique = true)
     private String email;
 
     @NotBlank(message = "Password field is required !!!")

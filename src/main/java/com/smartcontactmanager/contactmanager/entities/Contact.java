@@ -1,7 +1,8 @@
 package com.smartcontactmanager.contactmanager.entities;
 
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "contacts")
@@ -22,8 +23,12 @@ public class Contact {
 
     private String phone;
 
+    @Column(name = "photo")
     private String photo;
 
+    //mapping for multiple image uploading;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contact")
+    private List<ContactImage> photos = new ArrayList<>();
 
     @Column(name = "description", length = 1000)
     private String description;
@@ -87,6 +92,14 @@ public class Contact {
         this.photo = photo;
     }
 
+    public List<ContactImage> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<ContactImage> photos) {
+        this.photos = photos;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -103,7 +116,7 @@ public class Contact {
         this.user = user;
     }
 
-/*    @Override
+ /*   @Override
     public String toString() {
         return "Contact{" +
                 "id=" + id +
@@ -112,7 +125,7 @@ public class Contact {
                 ", work='" + work + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", image='" + photo + '\'' +
+                ", photos=" + photos +
                 ", description='" + description + '\'' +
                 ", user=" + user +
                 '}';
