@@ -26,6 +26,7 @@ import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -143,5 +144,13 @@ public class UserController {
         model.addAttribute("totalPage",contacts.getTotalPages());
 
         return "user/show_contacts";
+    }
+
+    @GetMapping("/contact-details/{id}")
+    public String contacDetails(@PathVariable("id") int id, Model model){
+       Contact contact = contactRepository.findById(id).get();
+       model.addAttribute("contact",contact);
+
+       return "user/contact_details";
     }
 }

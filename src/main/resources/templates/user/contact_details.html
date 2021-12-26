@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+<section class="banner">
+    <div class="card ml-3 mr-3">
+        <div class="card-body">
+          <div class="container text-center">
+              <img class="image-detail" th:src="@{'/img/'+ ${contact.photo}}" alt="">
+              <h4 class="mt-2" th:text="${contact.name} + ' ' + ${contact.nickName}"></h4>
+          </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
